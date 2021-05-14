@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>Movies Poster</title>
+</head>
+<body>
+<table>
+{% for i in range(list_genera|length) %}
+<tr>
+<td>{% if i%2==0 %}
+      <h2>{{list_genera[i]}}</h2> 
+      {% elif list_genera[i]!="0"%}
+        <img src={{list_genera[i]}} width="300">
+        {% endif %}
+</td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>
+

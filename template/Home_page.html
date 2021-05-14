@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Genres Home_page</title>
+</head>
+<style>
+  .dec{
+    padding: 20px 30px;
+    margin-top:0%;
+    margin-left: 40%;
+    color: black;
+  }
+  .div{
+  background-color:black;}
+  .de{
+    margin-left: 200px;
+    margin-top: 200px;
+    color:white;
+  }
+  .su{
+   padding: 20px 20px;
+    margin-top:0%;
+    margin-left: 40%;
+    background-color:blue;
+    color:black;
+  }
+  body{
+    background-image: url('/static/imagep.jpg'); 
+   background-attachment:fixed;
+   background-size:cover;
+  }
+</style>
+<body>
+<form action="/s" method="post">
+<div class='div'>
+<label><h1 class="de">Choose The Perticular Genres Of Movie From Dropdown</h1></label>
+</div>
+<select name="genera" class="dec">
+  <option value="Action">Action</option>
+  <option value="Comedy">Comedy</option>
+  <option value="Drama">Drama</option>
+  <option value="Romance">Romance</option>
+   <option value="Horror">Horror</option>
+  <option value="Animation">Animation</option>
+     <option value="Children">Children</option>
+  <option value="Documentary">Documentary</option>
+    <option value="Adventure">Adventure</option>
+</select><br>
+<br>
+<input type="submit" class="su" name="gensubmit">
+</form>
+</body>
+</html>
