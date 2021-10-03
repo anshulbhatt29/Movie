@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from math import sqrt
 import movieposters as mp
+import imdb
+ia=imdb.IMDb()
       
 #from scipy.sparse import csr_matrix
 
@@ -14,6 +16,7 @@ import movieposters as mp
        distance += (row1[i] - row2[i])**2
     return sqrt(distance)'''
     
+
 def cosine_similarity(row1,row2):
     dot=0.0
     magnitude=1
@@ -25,7 +28,7 @@ def cosine_similarity(row1,row2):
             magnitude*=maginit
         
     angle=dot/magnitude
-    return (angle);
+    return (angle)
 
         
     
@@ -39,7 +42,7 @@ def get_neighbors(train, test_row, num_neighbors,c):
            dist = cosine_similarity(test_row, train_row)#distance in terms of angle.more the value more will it be similar.
            distances.append((train_row, dist,x))#Create a tuple .
         x=x+1;
-    distances.sort(key=lambda tup: tup[1],reverse=True)#asscending order.#####Descending order.
+    distances.sort(key=lambda tup: tup[1],reverse=True)#descending order because it is cos angle and not angle....
     neighbors = list()
     for i in range(num_neighbors):
        neighbors.append((distances[i][0],distances[i][2]))
@@ -93,8 +96,12 @@ def GeneraRecom(genres):
  mainlist=[]
  for p in range(len(listt)):
   mainlist.append(movies_dict[listt[p]])
-  try:
-             link = mp.get_poster(title=movies_dict[listt[p]])
+  try:#Changes for new library..
+      
+             search=ia.search_movie(movies_dict[listt[p]])  
+             x=str(search[0].movieID)
+             series=ia.get_movie(x)
+             link=series.data['cover url']
              print(link)
              mainlist.append(link)
   except:
@@ -170,7 +177,10 @@ def supper(userrequest):
         if val>1:
             try:
              list_img.append(k)
-             link = mp.get_poster(title=k)
+             search=ia.search_movie(k)  
+             x=str(search[0].movieID)
+             series=ia.get_movie(x)
+             link=series.data['cover url']
              print(link)
              list_img.append(link)
             except:
